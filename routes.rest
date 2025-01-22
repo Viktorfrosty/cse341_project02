@@ -22,7 +22,7 @@ content-type: application/json
     "birthday": "0000-00-00"
 }
 
-### The following requests updates a single contact in the database.
+### The following requests totally updates a single contact in the database.
 # Format: PUT http://localhost:8080/contacts/:id
 PUT http://localhost:8080/contacts/67914adafd94b8e085235554 HTTP/1.1
 content-type: application/json
@@ -33,6 +33,16 @@ content-type: application/json
     "email": "mike.test@example.com",
     "favoriteColor": "Test",
     "birthday": "0000-00-00"
+}
+
+### The following requests partially updates a single contact in the database.
+# Format: PATCH http://localhost:8080/contacts/:id
+PATCH http://localhost:8080/contacts/67914adafd94b8e085235554 HTTP/1.1
+content-type: application/json
+
+{
+    "favoriteColor": "Blue",
+    "birthday": "1111-11-11"
 }
 
 ### The following requests deletes a single contact in the database.
