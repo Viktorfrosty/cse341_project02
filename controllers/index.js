@@ -1,6 +1,5 @@
-// Default Controller.
-
 // Dependencies:
+
 const model = require("../models/");
 
 // Functions:
@@ -12,5 +11,6 @@ async function status(req, res) {
   res.status(result.statusCode).send(result.info);
 }
 
-// Export controller.
+// Export controller:
+
 module.exports = { status };

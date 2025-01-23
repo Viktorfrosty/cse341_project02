@@ -1,3 +1,5 @@
+// Functions:
+
 // Swagger Autogen code.
 const swaggerAutogen = require("swagger-autogen")();
 const documentation = {
@@ -5,11 +7,11 @@ const documentation = {
     title: "API Documentation",
     description: "API Documentation",
   },
-  host: "localhost:8080",
-  schemes: ["http", "https"],
+  host: "cse341-project01-64kj.onrender.com",
+  schemes: ["https"],
 };
 const outputFile = "./swagger.json";
-const endpointsFiles = ["./routes/index.js", "./routes/contacts.js"];
+const endpointsFiles = ["./routes/index.js", "./routes/stores.js", "./routes/vehicles.js"];
 
 // Generate Swagger.json file.
 swaggerAutogen(outputFile, endpointsFiles, documentation).then(() => {

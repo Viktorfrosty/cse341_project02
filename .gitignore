@@ -8,4 +8,4 @@
 eslint.config.mjs
 .prettierrc
 playground-1.mongodb.js
-contacts.json
+stores.json

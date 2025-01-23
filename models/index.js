@@ -1,6 +1,5 @@
-// Default Model.
-
 // Dependencies:
+
 require("dotenv").config();
 const client = require("../database/");
 const database = process.env.DATABASE;
@@ -22,4 +21,5 @@ async function connectionStatus() {
 }
 
 // Export model:
+
 module.exports = { connectionStatus };

@@ -1,11 +1,12 @@
-// Database connection
+// Dependencies:
 
-// Dependencies
 require("dotenv").config();
 const { MongoClient, ServerApiVersion } = require("mongodb");
 const url = process.env.DB_URL;
 
-// Create a MongoClient with a MongoClientOptions object to set the Stable API version
+// Functions:
+
+// Create a MongoClient with a MongoClientOptions object to set the Stable API version.
 const client = new MongoClient(url, {
   serverApi: {
     version: ServerApiVersion.v1,
@@ -13,5 +14,7 @@ const client = new MongoClient(url, {
     deprecationErrors: true,
   },
 });
+
+// Export client:
 
 module.exports = client;
