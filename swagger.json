@@ -5,7 +5,7 @@
     "description": "API Documentation",
     "version": "1.0.0"
   },
-  "host": "cse341-project01-64kj.onrender.com",
+  "host": "cse-341-project-02-sevu.onrender.com",
   "basePath": "/",
   "schemes": [
     "https"
