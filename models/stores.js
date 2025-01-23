@@ -6,6 +6,9 @@ const { ObjectId } = require("mongodb");
 const database = process.env.DATABASE;
 const collection = process.env.COLLECTION_A;
 const env = process.env.NODE_ENV;
+
+// Constants:
+
 const processedTrue = "Request processed.";
 const processedFalse = "Request could not be processed.";
 
@@ -69,76 +72,6 @@ async function addStore(info) {
   }
 }
 
-// // Interact with the database and partially updates a single store.
-// async function partiallyUpdateStore(id, info) {
-//   try {
-//     await client.connect();
-//     const update = await client
-//       .db(database)
-//       .collection(collection)
-//       .updateOne(
-//         { _id: new ObjectId(id) },
-//         {
-//           $set: {
-//             firstName: info.firstName,
-//             lastName: info.lastName,
-//             email: info.email,
-//             favoriteColor: info.favoriteColor,
-//             birthday: info.birthday,
-//           },
-//         },
-//       );
-//     if (update.modifiedCount > 0) {
-//       if (env !== "production") {
-//         console.log(`PUT ${processedTrue} Element id: ${id}`);
-//       }
-//       return { statusCode: 200, info: { message: processedTrue } };
-//     } else {
-//       if (env !== "production") {
-//         console.log(`PUT ${processedFalse} Element id: ${id}`);
-//       }
-//       return { statusCode: 403, info: { message: processedFalse } };
-//     }
-//   } catch (error) {
-//     return { statusCode: 500, info: { message: error.errmsg } };
-//   }
-// }
-
-// // Interact with the database and totally updates a single store.
-// async function totallyUpdateStore(id, info) {
-//   try {
-//     await client.connect();
-//     const update = await client
-//       .db(database)
-//       .collection(collection)
-//       .updateOne(
-//         { _id: new ObjectId(id) },
-//         {
-//           $set: {
-//             firstName: info.firstName,
-//             lastName: info.lastName,
-//             email: info.email,
-//             favoriteColor: info.favoriteColor,
-//             birthday: info.birthday,
-//           },
-//         },
-//       );
-//     if (update.modifiedCount > 0) {
-//       if (env !== "production") {
-//         console.log(`PUT ${processedTrue} Element id: ${id}`);
-//       }
-//       return { statusCode: 200, info: { message: processedTrue } };
-//     } else {
-//       if (env !== "production") {
-//         console.log(`PUT ${processedFalse} Element id: ${id}`);
-//       }
-//       return { statusCode: 403, info: { message: processedFalse } };
-//     }
-//   } catch (error) {
-//     return { statusCode: 500, info: { message: error.errmsg } };
-//   }
-// }
-
 // Interact with the database and updates a single store.
 async function updateStore(id, info) {
   try {
@@ -200,5 +133,6 @@ async function deleteStore(id) {
   }
 }
 
-// Export model.
+// Export model:
+
 module.exports = { getAllStores, getStore, addStore, updateStore, deleteStore };

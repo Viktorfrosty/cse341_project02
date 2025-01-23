@@ -8,7 +8,7 @@ GET http://localhost:8080/stores
 
 ### The following requests return a single store from the database.
 # Format: GET http://localhost:8080/stores/:id
-GET http://localhost:8080/stores/6791d9d49815c09c95559df3
+GET http://localhost:8080/stores/679253f78665cf4f8c7091b0
 
 ### The following requests creates a single store in the database.
 POST http://localhost:8080/stores HTTP/1.1
@@ -18,7 +18,7 @@ content-type: application/json
   "storeName": "Auto Track Store",
   "address": "123 Second St",
   "city": "Iowa",
-  "state": "01",
+  "state": "XX",
   "zipCode": "62701",
   "email": "test@autotrackstore.com",
   "phone": "555-1234"
@@ -26,7 +26,7 @@ content-type: application/json
 
 ### The following requests totally updates a single store in the database.
 # Format: PUT http://localhost:8080/stores/:id
-PUT http://localhost:8080/stores/67914adafd94b8e085235554 HTTP/1.1
+PUT http://localhost:8080/stores/67926afe9b0da745c87d040a HTTP/1.1
 content-type: application/json
 
 {
@@ -36,22 +36,12 @@ content-type: application/json
   "state": "IL",
   "zipCode": "62701",
   "email": "contact@autoworld.com",
-  "phone": "555-1234"
+  "phone": "555-123A"
 }
-
-# ### The following requests partially updates a single store in the database.
-# # Format: PATCH http://localhost:8080/stores/:id
-# PATCH http://localhost:8080/stores/67914adafd94b8e085235554 HTTP/1.1
-# content-type: application/json
-
-# {
-#     "favoriteColor": "Blue",
-#     "birthday": "1111-11-11"
-# }
 
 ### The following requests deletes a single store in the database.
 # Format: DELETE http://localhost:8080/stores/:id
-DELETE http://localhost:8080/stores/67914adafd94b8e085235554
+DELETE http://localhost:8080/stores/67926afe9b0da745c87d040a
 
 
 # Render.com:

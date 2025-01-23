@@ -1,13 +1,26 @@
 // Dependencies:
 
+require("dotenv").config();
 const { body, validationResult } = require("express-validator");
-
-//
 
 // Functions:
 
-// Add store ruleset.
-function addStoreRules() {
+// Store id validation.
+function verifyId(req, res, next) {
+  const id = req.params.id;
+  const regex = /^[a-f\d]{24}$/i;
+  if (!regex.test(id)) {
+    if (process.env.NODE_ENV !== "production") {
+      console.log("Request was not processed. Invalid ID format.");
+    }
+    res.status(400).send({ message: "Request was not processed.", errors: "Invalid ID format." });
+  } else {
+    next();
+  }
+}
+
+// Store data ruleset.
+function storeDataRules() {
   return [
     body("storeName")
       .matches(/^[a-zA-Z0-9 .,'-]+$/)
@@ -22,26 +35,32 @@ function addStoreRules() {
       .matches(/^[A-Z]{2}$/)
       .withMessage("State must be a two-letter abbreviation."),
     body("zipCode")
-      .matches(/^\\d{5}$/)
+      .matches(/^\d{5}$/)
       .withMessage("Zip code must be five digits."),
     body("email")
-      .matches(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$/)
-      .withMessage("Email must be valid."),
+      .isEmail()
+      .withMessage("A valid email is required.")
+      .normalizeEmail()
+      .withMessage("A valid email is required."),
     body("phone")
-      .matches(/^\\d{3}-\\d{4}$/)
+      .matches(/^\d{3}-\d{4}$/)
       .withMessage("Phone number must be in the format XXX-XXXX."),
   ];
 }
 
-async function checkNewStoreData(req, next) {
-  let errors = [];
-  errors = validationResult(req);
+// Store data validation.
+async function checkStoreData(req, res, next) {
+  let errors = validationResult(req);
   if (!errors.isEmpty()) {
-    return { statusCode: 400, info: { message: errors.array() } };
+    if (process.env.NODE_ENV !== "production") {
+      console.log({ element_id: req.params.id, message: "Request was not processed.", errors: errors.array() });
+    }
+    res.status(400).send({ message: "Request was not processed.", errors: errors.array() });
+  } else {
+    next();
   }
-  next();
 }
 
 // Export functions:
 
-module.exports = { addStoreRules, checkNewStoreData };
+module.exports = { verifyId, storeDataRules, checkStoreData };
