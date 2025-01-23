@@ -6,7 +6,7 @@ const bodyParser = require("body-parser");
 const defaultRouter = require("./routes/");
 const storesRouter = require("./routes/stores");
 const vehiclesRouter = require("./routes/vehicles");
-// const swaggerRouter = require("./routes/swagger");
+const swaggerRouter = require("./routes/swagger");
 
 const app = express();
 
@@ -24,7 +24,7 @@ app.use(bodyParser.json()).use((req, res, next) => {
 app.use("/", defaultRouter);
 app.use("/stores", storesRouter);
 app.use("/vehicles", vehiclesRouter);
-// app.use("/api-docs", swaggerRouter);
+app.use("/api-docs", swaggerRouter);
 
 // Miscellaneous:
 

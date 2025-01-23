@@ -10,3 +10,4 @@ eslint.config.mjs
 playground-1.mongodb.js
 stores.json
 vehicles.json
+swagger.js

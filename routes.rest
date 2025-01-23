@@ -1,5 +1,3 @@
-# localhost:
-
 ### The following request return the connection status to the database.
 GET http://localhost:8080
 
@@ -84,44 +82,3 @@ content-type: application/json
 ### The following requests deletes a single vehicle in the database.
 # Format: DELETE http://localhost:8080/vehicles/:id
 DELETE http://localhost:8080/vehicles/6792a6ed711073d5d81f453d
-
-# Render.com:
-
-### The following request return the connection status to the database.
-GET https://cse341-project01-64kj.onrender.com/
-
-### The following request return all the stores in the database.
-GET https://cse341-project01-64kj.onrender.com/stores
-
-### The following requests return a single store from the database.
-# Format: GET https://cse341-project01-64kj.onrender.com/stores/:id
-GET  https://cse341-project01-64kj.onrender.com/stores/6782828d94435c7eef65a3f1
-
-### The following requests creates a single store in the database.
-POST https://cse341-project01-64kj.onrender.com/stores HTTP/1.1
-content-type: application/json
-
-{
-    "firstName": "Mr",
-    "lastName": "Test",
-    "email": "mr.test@example.com",
-    "favoriteColor": "Test",
-    "birthday": "0000-00-00"
-}
-
-### The following requests updates a single store in the database.
-# Format: PUT https://cse341-project01-64kj.onrender.com/stores/:id
-PUT https://cse341-project01-64kj.onrender.com/stores/6789b3f0b7a41ebacc69d4c8 HTTP/1.1
-content-type: application/json
-
-{
-    "firstName": "Michael",
-    "lastName": "Test",
-    "email": "mike.test@example.com",
-    "favoriteColor": "Test",
-    "birthday": "0000-00-00"
-}
-
-### The following requests deletes a single store in the database.
-# Format: DELETE https://cse341-project01-64kj.onrender.com/stores/:id
-DELETE https://cse341-project01-64kj.onrender.com/stores/6789b3feb7a41ebacc69d4c9

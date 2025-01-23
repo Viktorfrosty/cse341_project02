@@ -67,7 +67,7 @@ async function addVehicle(info) {
     if (env !== "production") {
       console.log(`POST ${processedTrue} New vehicle Id: ${result["insertedId"]}`);
     }
-    return { statusCode: 200, info: { message: `${processedTrue} New vehicle Id: ${result["insertedId"]}` } };
+    return { statusCode: 201, info: { message: `${processedTrue} New vehicle Id: ${result["insertedId"]}` } };
   } catch (error) {
     return { statusCode: 500, info: { message: error.errmsg } };
   }

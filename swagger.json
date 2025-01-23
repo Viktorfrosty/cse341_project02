@@ -1,0 +1,439 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "API Documentation",
+    "description": "API Documentation",
+    "version": "1.0.0"
+  },
+  "host": "cse341-project01-64kj.onrender.com",
+  "basePath": "/",
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "tags": [
+          "default"
+        ],
+        "description": "Check if server is running smoothly.",
+        "responses": {
+          "200": {
+            "description": "Connection stablished."
+          },
+          "503": {
+            "description": "Connection could not be stablished."
+          }
+        }
+      }
+    },
+    "/stores": {
+      "get": {
+        "tags": [
+          "stores"
+        ],
+        "description": "Retrieve all stores.",
+        "responses": {
+          "200": {
+            "description": "All stores registered."
+          },
+          "404": {
+            "description": "No stores registered."
+          },
+          "500": {
+            "description": "Internal server error."
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "stores"
+        ],
+        "description": "Add a single store",
+        "parameters": [
+          {
+            "name": "store",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "storeName": {
+                  "type": "string",
+                  "example": "Auto Track Store"
+                },
+                "address": {
+                  "type": "string",
+                  "example": "123 Second St"
+                },
+                "city": {
+                  "type": "string",
+                  "example": "Iowa"
+                },
+                "state": {
+                  "type": "string",
+                  "example": "XX"
+                },
+                "zipCode": {
+                  "type": "string",
+                  "example": "62701"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "test@autotrackstore.com"
+                },
+                "phone": {
+                  "type": "string",
+                  "example": "555-1234"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "New store registered."
+          },
+          "500": {
+            "description": "Internal server error."
+          }
+        }
+      }
+    },
+    "/stores/{id}": {
+      "get": {
+        "tags": [
+          "stores"
+        ],
+        "description": "Retrieve a single store.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "example": "6791d9d49815c09c95559df3"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Store information."
+          },
+          "400": {
+            "description": "Bad Request."
+          },
+          "404": {
+            "description": "No store found."
+          },
+          "500": {
+            "description": "Internal server error."
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "stores"
+        ],
+        "description": "Updates a single store",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "example": "6792c0f2bf79b2da627b8559"
+          },
+          {
+            "name": "store",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "storeName": {
+                  "type": "string",
+                  "example": "Auto Track Store"
+                },
+                "address": {
+                  "type": "string",
+                  "example": "321 third St"
+                },
+                "city": {
+                  "type": "string",
+                  "example": "Iowa"
+                },
+                "state": {
+                  "type": "string",
+                  "example": "IL"
+                },
+                "zipCode": {
+                  "type": "string",
+                  "example": "62701"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "test@autotrackstore.com"
+                },
+                "phone": {
+                  "type": "string",
+                  "example": "555-1234"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Store information updated."
+          },
+          "400": {
+            "description": "Bad Request."
+          },
+          "403": {
+            "description": "Forbidden."
+          },
+          "500": {
+            "description": "Internal server error."
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "stores"
+        ],
+        "description": "Deletes a single store",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "example": "6792c0f2bf79b2da627b8559"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Store deleted."
+          },
+          "400": {
+            "description": "Bad Request."
+          },
+          "403": {
+            "description": "Forbidden."
+          },
+          "500": {
+            "description": "Internal server error."
+          }
+        }
+      }
+    },
+    "/vehicles": {
+      "get": {
+        "tags": [
+          "vehicles"
+        ],
+        "description": "Retrieve all vehicles.",
+        "responses": {
+          "200": {
+            "description": "All vehicles registered."
+          },
+          "404": {
+            "description": "No vehicles registered."
+          },
+          "500": {
+            "description": "Internal server error."
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "vehicles"
+        ],
+        "description": "Add a single vehicle",
+        "parameters": [
+          {
+            "name": "vehicle",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "carName": {
+                  "type": "string",
+                  "example": "Milano"
+                },
+                "manufacturer": {
+                  "type": "string",
+                  "example": "Elisa Motors"
+                },
+                "model": {
+                  "type": "string",
+                  "example": "X-10"
+                },
+                "year": {
+                  "type": "string",
+                  "example": "2100"
+                },
+                "color": {
+                  "type": "string",
+                  "example": "Electric Yellow"
+                },
+                "engineType": {
+                  "type": "string",
+                  "example": "Antimatter Reactor"
+                },
+                "price": {
+                  "type": "string",
+                  "example": "550000"
+                },
+                "description": {
+                  "type": "string",
+                  "example": "A high-speed car with a antimatter reactor, perfect for futuristic exploration."
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "New vehicle registered."
+          },
+          "500": {
+            "description": "Internal server error."
+          }
+        }
+      }
+    },
+    "/vehicles/{id}": {
+      "get": {
+        "tags": [
+          "vehicles"
+        ],
+        "description": "Retrieve a single vehicle.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "example": "6791d9d49815c09c95559df3"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Vehicle information."
+          },
+          "400": {
+            "description": "Bad Request."
+          },
+          "404": {
+            "description": "No vehicle found."
+          },
+          "500": {
+            "description": "Internal server error."
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "vehicles"
+        ],
+        "description": "Updates a single vehicle",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "example": "6792c69fa6643ca751f33507"
+          },
+          {
+            "name": "vehicle",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "carName": {
+                  "type": "string",
+                  "example": "Milano"
+                },
+                "manufacturer": {
+                  "type": "string",
+                  "example": "Elisa Motors"
+                },
+                "model": {
+                  "type": "string",
+                  "example": "2000X"
+                },
+                "year": {
+                  "type": "string",
+                  "example": "2100"
+                },
+                "color": {
+                  "type": "string",
+                  "example": "Electric Yellow"
+                },
+                "engineType": {
+                  "type": "string",
+                  "example": "Antimatter Reactor"
+                },
+                "price": {
+                  "type": "string",
+                  "example": "550001"
+                },
+                "description": {
+                  "type": "string",
+                  "example": "A high-speed car with a antimatter reactor, perfect for futuristic exploration."
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Vehicle information updated."
+          },
+          "400": {
+            "description": "Bad Request."
+          },
+          "403": {
+            "description": "Forbidden."
+          },
+          "500": {
+            "description": "Internal server error."
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "vehicles"
+        ],
+        "description": "Deletes a single vehicle",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "example": "6792c69fa6643ca751f33507"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Vehicle deleted."
+          },
+          "400": {
+            "description": "Bad Request."
+          },
+          "403": {
+            "description": "Forbidden."
+          },
+          "500": {
+            "description": "Internal server error."
+          }
+        }
+      }
+    }
+  }
+}
