@@ -6,7 +6,7 @@ const { body, validationResult } = require("express-validator");
 // Functions:
 
 // Store data ruleset.
-function storeDataRules() {
+function vehicleDataRules() {
   return [
     body("storeName")
       .matches(/^[a-zA-Z0-9 .,'-]+$/)
@@ -35,7 +35,7 @@ function storeDataRules() {
 }
 
 // Store data validation.
-async function checkStoreData(req, res, next) {
+async function checkVehicleData(req, res, next) {
   let errors = validationResult(req);
   if (!errors.isEmpty()) {
     if (process.env.NODE_ENV !== "production") {
@@ -49,4 +49,4 @@ async function checkStoreData(req, res, next) {
 
 // Export functions:
 
-module.exports = { storeDataRules, checkStoreData };
+module.exports = { vehicleDataRules, checkVehicleData };

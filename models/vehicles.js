@@ -4,7 +4,7 @@ require("dotenv").config();
 const client = require("../database");
 const { ObjectId } = require("mongodb");
 const database = process.env.DATABASE;
-const collection = process.env.COLLECTION_A;
+const collection = process.env.COLLECTION_B;
 const env = process.env.NODE_ENV;
 
 // Constants:
@@ -14,15 +14,15 @@ const processedFalse = "Request could not be processed.";
 
 // Functions:
 
-// Interact with the database and retrieve all stores.
-async function getAllStores() {
+// Interact with the database and retrieve all vehicles.
+async function getAllVehicles() {
   try {
     await client.connect();
     const data = await client.db(database).collection(collection).find({}).toArray();
     if (data.length > 0) {
       return { statusCode: 200, info: data };
     } else {
-      return { statusCode: 404, info: { message: "No stores registered." } };
+      return { statusCode: 404, info: { message: "No vehicles registered." } };
     }
   } catch (error) {
     return { statusCode: 500, info: { message: error.errmsg } };
@@ -31,8 +31,8 @@ async function getAllStores() {
   }
 }
 
-// Interact with the database and retrieve a single store.
-async function getStore(id) {
+// Interact with the database and retrieve a single vehicle.
+async function getVehicle(id) {
   try {
     await client.connect();
     const data = await client
@@ -40,7 +40,7 @@ async function getStore(id) {
       .collection(collection)
       .findOne({ _id: new ObjectId(id) });
     if (!data) {
-      return { statusCode: 404, info: { message: "Store not found." } };
+      return { statusCode: 404, info: { message: "Vehicle not found." } };
     }
     return { statusCode: 200, info: data };
   } catch (error) {
@@ -50,12 +50,12 @@ async function getStore(id) {
   }
 }
 
-// Interact with the database and add a single store.
-async function addStore(info) {
+// Interact with the database and add a single vehicle.
+async function addVehicle(info) {
   try {
     await client.connect();
     const result = await client.db(database).collection(collection).insertOne({
-      storeName: info.storeName,
+      vehicleName: info.vehicleName,
       address: info.address,
       city: info.city,
       state: info.state,
@@ -64,16 +64,16 @@ async function addStore(info) {
       phone: info.phone,
     });
     if (env !== "production") {
-      console.log(`POST ${processedTrue} New store Id: ${result["insertedId"]}`);
+      console.log(`POST ${processedTrue} New vehicle Id: ${result["insertedId"]}`);
     }
-    return { statusCode: 200, info: { message: `${processedTrue} New store Id: ${result["insertedId"]}` } };
+    return { statusCode: 200, info: { message: `${processedTrue} New vehicle Id: ${result["insertedId"]}` } };
   } catch (error) {
     return { statusCode: 500, info: { message: error.errmsg } };
   }
 }
 
-// Interact with the database and updates a single store.
-async function updateStore(id, info) {
+// Interact with the database and updates a single vehicle.
+async function updateVehicle(id, info) {
   try {
     await client.connect();
     const update = await client
@@ -83,7 +83,7 @@ async function updateStore(id, info) {
         { _id: new ObjectId(id) },
         {
           $set: {
-            storeName: info.storeName,
+            vehicleName: info.vehicleName,
             address: info.address,
             city: info.city,
             state: info.state,
@@ -95,12 +95,12 @@ async function updateStore(id, info) {
       );
     if (update.modifiedCount > 0) {
       if (env !== "production") {
-        console.log(`PUT ${processedTrue} Store id: ${id}`);
+        console.log(`PUT ${processedTrue} Vehicle id: ${id}`);
       }
       return { statusCode: 200, info: { message: processedTrue } };
     } else {
       if (env !== "production") {
-        console.log(`PUT ${processedFalse} Store id: ${id}`);
+        console.log(`PUT ${processedFalse} Vehicle id: ${id}`);
       }
       return { statusCode: 403, info: { message: processedFalse } };
     }
@@ -109,8 +109,8 @@ async function updateStore(id, info) {
   }
 }
 
-// Interact with the database and delete a single store.
-async function deleteStore(id) {
+// Interact with the database and delete a single vehicle.
+async function deleteVehicle(id) {
   try {
     await client.connect();
     const update = await client
@@ -119,12 +119,12 @@ async function deleteStore(id) {
       .deleteOne({ _id: new ObjectId(id) });
     if (update.deletedCount > 0) {
       if (env !== "production") {
-        console.log(`DELETE ${processedTrue} Store id: ${id}`);
+        console.log(`DELETE ${processedTrue} Vehicle id: ${id}`);
       }
       return { statusCode: 200, info: { message: processedTrue } };
     } else {
       if (env !== "production") {
-        console.log(`DELETE ${processedFalse} Store id: ${id}`);
+        console.log(`DELETE ${processedFalse} Vehicle id: ${id}`);
       }
       return { statusCode: 403, info: { message: processedFalse } };
     }
@@ -135,4 +135,4 @@ async function deleteStore(id) {
 
 // Export model:
 
-module.exports = { getAllStores, getStore, addStore, updateStore, deleteStore };
+module.exports = { getAllVehicles, getVehicle, addVehicle, updateVehicle, deleteVehicle };

@@ -4,11 +4,12 @@ const express = require("express");
 const router = new express.Router();
 const controller = require("../controllers/stores");
 const validator = require("../utilities/stores");
+const idValidation = require("../utilities/");
 
 // GET routes:
 
 router.get("/", controller.getAllStores);
-router.get("/:id", validator.verifyId, controller.getStore);
+router.get("/:id", idValidation.verify, controller.getStore);
 
 // POST routes:
 
@@ -16,11 +17,11 @@ router.post("/", validator.storeDataRules(), validator.checkStoreData, controlle
 
 // PUT routes:
 
-router.put("/:id", validator.verifyId, validator.storeDataRules(), validator.checkStoreData, controller.updateStore);
+router.put("/:id", idValidation.verify, validator.storeDataRules(), validator.checkStoreData, controller.updateStore);
 
 // DELETE routes:
 
-router.delete("/:id", validator.verifyId, controller.deleteStore);
+router.delete("/:id", idValidation.verify, controller.deleteStore);
 
 // Export router:
 

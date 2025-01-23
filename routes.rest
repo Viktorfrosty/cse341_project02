@@ -43,6 +43,12 @@ content-type: application/json
 # Format: DELETE http://localhost:8080/stores/:id
 DELETE http://localhost:8080/stores/67926afe9b0da745c87d040a
 
+### The following request return all the vehicles in the database.
+GET http://localhost:8080/vehicles
+
+### The following requests return a single vehicle from the database.
+# Format: GET http://localhost:8080/vehicles/:id
+GET http://localhost:8080/vehicles/679253f78665cf4f8c7091b0
 
 # Render.com:
 
