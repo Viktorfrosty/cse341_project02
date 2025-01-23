@@ -1,6 +1,5 @@
-// Contacts model.
-
 // Dependencies:
+
 require("dotenv").config();
 const client = require("../database/");
 const { ObjectId } = require("mongodb");
@@ -68,8 +67,43 @@ async function addContact(info) {
   }
 }
 
-// Interact with the database and updates a single contact.
-async function updateContact(id, info) {
+// Interact with the database and partially updates a single contact.
+async function partiallyUpdateContact(id, info) {
+  try {
+    await client.connect();
+    const update = await client
+      .db(database)
+      .collection(collection)
+      .updateOne(
+        { _id: new ObjectId(id) },
+        {
+          $set: {
+            firstName: info.firstName,
+            lastName: info.lastName,
+            email: info.email,
+            favoriteColor: info.favoriteColor,
+            birthday: info.birthday,
+          },
+        },
+      );
+    if (update.modifiedCount > 0) {
+      if (env !== "production") {
+        console.log(`PUT ${processedTrue} Element id: ${id}`);
+      }
+      return { statusCode: 200, info: { message: processedTrue } };
+    } else {
+      if (env !== "production") {
+        console.log(`PUT ${processedFalse} Element id: ${id}`);
+      }
+      return { statusCode: 403, info: { message: processedFalse } };
+    }
+  } catch (error) {
+    return { statusCode: 500, info: { message: error.errmsg } };
+  }
+}
+
+// Interact with the database and totally updates a single contact.
+async function totallyUpdateContact(id, info) {
   try {
     await client.connect();
     const update = await client
