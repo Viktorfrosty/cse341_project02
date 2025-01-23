@@ -55,13 +55,14 @@ async function addVehicle(info) {
   try {
     await client.connect();
     const result = await client.db(database).collection(collection).insertOne({
-      vehicleName: info.vehicleName,
-      address: info.address,
-      city: info.city,
-      state: info.state,
-      zipCode: info.zipCode,
-      email: info.email,
-      phone: info.phone,
+      carName: info.carName,
+      manufacturer: info.manufacturer,
+      model: info.model,
+      year: info.year,
+      color: info.color,
+      engineType: info.engineType,
+      price: info.price,
+      description: info.description,
     });
     if (env !== "production") {
       console.log(`POST ${processedTrue} New vehicle Id: ${result["insertedId"]}`);
@@ -83,13 +84,14 @@ async function updateVehicle(id, info) {
         { _id: new ObjectId(id) },
         {
           $set: {
-            vehicleName: info.vehicleName,
-            address: info.address,
-            city: info.city,
-            state: info.state,
-            zipCode: info.zipCode,
-            email: info.email,
-            phone: info.phone,
+            carName: info.carName,
+            manufacturer: info.manufacturer,
+            model: info.model,
+            year: info.year,
+            color: info.color,
+            engineType: info.engineType,
+            price: info.price,
+            description: info.description,
           },
         },
       );

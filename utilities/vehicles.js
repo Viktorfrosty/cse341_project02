@@ -8,29 +8,28 @@ const { body, validationResult } = require("express-validator");
 // Store data ruleset.
 function vehicleDataRules() {
   return [
-    body("storeName")
+    body("carName")
       .matches(/^[a-zA-Z0-9 .,'-]+$/)
-      .withMessage("Store name must be alphanumeric."),
-    body("address")
+      .withMessage("Car name must be alphanumeric."),
+    body("manufacturer")
       .matches(/^[a-zA-Z0-9 .,'-]+$/)
-      .withMessage("Address must be alphanumeric."),
-    body("city")
-      .matches(/^[a-zA-Z ]+$/)
-      .withMessage("City must be alphabetic."),
-    body("state")
-      .matches(/^[A-Z]{2}$/)
-      .withMessage("State must be a two-letter abbreviation."),
-    body("zipCode")
-      .matches(/^\d{5}$/)
-      .withMessage("Zip code must be five digits."),
-    body("email")
-      .isEmail()
-      .withMessage("A valid email is required.")
-      .normalizeEmail()
-      .withMessage("A valid email is required."),
-    body("phone")
-      .matches(/^\d{3}-\d{4}$/)
-      .withMessage("Phone number must be in the format XXX-XXXX."),
+      .withMessage("Manufacturer must be alphanumeric."),
+    body("model")
+      .matches(/^[a-zA-Z0-9-]+$/)
+      .withMessage("Model must be alphanumeric."),
+    body("year")
+      .matches(/^\d{4}$/)
+      .withMessage("Year must be a four-digit number."),
+    body("color")
+      .matches(/^[a-zA-Z0-9 .,'-]+$/)
+      .withMessage("Color must be alphanumeric."),
+    body("engineType")
+      .matches(/^[a-zA-Z0-9 .,'-]+$/)
+      .withMessage("Engine type must be alphanumeric."),
+    body("price").matches(/^\d+$/).withMessage("Price must be a number."),
+    body("description")
+      .matches(/^[a-zA-Z0-9 .,'-]+$/)
+      .withMessage("Description must be alphanumeric."),
   ];
 }
 

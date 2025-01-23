@@ -48,7 +48,42 @@ GET http://localhost:8080/vehicles
 
 ### The following requests return a single vehicle from the database.
 # Format: GET http://localhost:8080/vehicles/:id
-GET http://localhost:8080/vehicles/679253f78665cf4f8c7091b0
+GET http://localhost:8080/vehicles/6792a6ed711073d5d81f453d
+
+### The following requests creates a single vehicle in the database.
+POST http://localhost:8080/vehicles HTTP/1.1
+content-type: application/json
+
+{
+  "carName": "Milano",
+  "manufacturer": "Elisa Motors",
+  "model": "X-10",
+  "year": "2100",
+  "color": "Electric Yellow",
+  "engineType": "Antimatter Reactor",
+  "price": "550000",
+  "description": "A high-speed car with a antimatter reactor, perfect for futuristic exploration."
+}
+
+### The following requests totally updates a single vehicle in the database.
+# Format: PUT http://localhost:8080/vehicles/:id
+PUT http://localhost:8080/vehicles/6792a6ed711073d5d81f453d HTTP/1.1
+content-type: application/json
+
+{
+  "carName": "Milanesa",
+  "manufacturer": "Elise Motors",
+  "model": "2000X",
+  "year": "2100",
+  "color": "Electric Yellow",
+  "engineType": "Antimatter Reactor",
+  "price": "550001",
+  "description": "A high-speed car with a antimatter reactor, perfect for futuristic exploration."
+}
+
+### The following requests deletes a single vehicle in the database.
+# Format: DELETE http://localhost:8080/vehicles/:id
+DELETE http://localhost:8080/vehicles/6792a6ed711073d5d81f453d
 
 # Render.com:
 
