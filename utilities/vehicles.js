@@ -15,14 +15,14 @@ function vehicleDataRules() {
       .matches(/^[a-zA-Z0-9 .,'-]+$/)
       .withMessage("Manufacturer must be alphanumeric."),
     body("model")
-      .matches(/^[a-zA-Z0-9-]+$/)
+      .matches(/^[a-zA-Z0-9 .,'-]+$/)
       .withMessage("Model must be alphanumeric."),
     body("year")
       .matches(/^\d{4}$/)
       .withMessage("Year must be a four-digit number."),
     body("color")
-      .matches(/^[a-zA-Z0-9 .,'-]+$/)
-      .withMessage("Color must be alphanumeric."),
+      .matches(/^[a-zA-Z .,'-]+$/)
+      .withMessage("Color must be alphabetic."),
     body("engineType")
       .matches(/^[a-zA-Z0-9 .,'-]+$/)
       .withMessage("Engine type must be alphanumeric."),
