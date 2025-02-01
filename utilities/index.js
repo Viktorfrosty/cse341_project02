@@ -18,6 +18,15 @@ function verify(req, res, next) {
   }
 }
 
+// Is authenticated
+function IsAuthenticated(req, res, next) {
+  if (req.session.user === undefined) {
+    res.status(401).send({ message: "Invalid access." });
+  } else {
+    next();
+  }
+}
+
 // Export functions:
 
-module.exports = { verify };
+module.exports = { verify, IsAuthenticated };

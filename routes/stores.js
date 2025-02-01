@@ -13,15 +13,28 @@ router.get("/:id", idValidation.verify, controller.getStore);
 
 // POST routes:
 
-router.post("/", validator.storeDataRules(), validator.checkStoreData, controller.addStore);
+router.post(
+  "/",
+  idValidation.IsAuthenticated,
+  validator.storeDataRules(),
+  validator.checkStoreData,
+  controller.addStore,
+);
 
 // PUT routes:
 
-router.put("/:id", idValidation.verify, validator.storeDataRules(), validator.checkStoreData, controller.updateStore);
+router.put(
+  "/:id",
+  idValidation.IsAuthenticated,
+  idValidation.verify,
+  validator.storeDataRules(),
+  validator.checkStoreData,
+  controller.updateStore,
+);
 
 // DELETE routes:
 
-router.delete("/:id", idValidation.verify, controller.deleteStore);
+router.delete("/:id", idValidation.IsAuthenticated, idValidation.verify, controller.deleteStore);
 
 // Export router:
 

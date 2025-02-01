@@ -13,12 +13,19 @@ router.get("/:id", idValidation.verify, controller.getVehicle);
 
 // POST routes:
 
-router.post("/", validator.vehicleDataRules(), validator.checkVehicleData, controller.addVehicle);
+router.post(
+  "/",
+  idValidation.IsAuthenticated,
+  validator.vehicleDataRules(),
+  validator.checkVehicleData,
+  controller.addVehicle,
+);
 
 // PUT routes:
 
 router.put(
   "/:id",
+  idValidation.IsAuthenticated,
   idValidation.verify,
   validator.vehicleDataRules(),
   validator.checkVehicleData,
@@ -27,7 +34,7 @@ router.put(
 
 // DELETE routes:
 
-router.delete("/:id", idValidation.verify, controller.deleteVehicle);
+router.delete("/:id", idValidation.IsAuthenticated, idValidation.verify, controller.deleteVehicle);
 
 // Export router:
 
