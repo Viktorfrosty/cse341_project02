@@ -7,11 +7,7 @@ const session = require("express-session");
 const cors = require("cors");
 const passport = require("passport");
 const githubStrategy = require("passport-github2").Strategy;
-
-// const defaultRouter = require("./routes/");
-const storesRouter = require("./routes/stores");
-const vehiclesRouter = require("./routes/vehicles");
-const swaggerRouter = require("./routes/swagger");
+const router = require("./routes/");
 
 const app = express();
 
@@ -35,14 +31,16 @@ app
   .use(cors({ origin: "*" }));
 
 passport.use(
-  new githubStrategy({
-    clientID: process.env.GITHUB_CLIENT_ID,
-    clientSecret: process.env.GITHUB_CLIENT_SECRET,
-    callbackURL: process.env.GITHUB_CALLBACK_URL,
-  }),
-  async function (accessToken, refreshToken, profile, done) {
-    return done(null, profile);
-  },
+  new githubStrategy(
+    {
+      clientID: process.env.GITHUB_CLIENT_ID,
+      clientSecret: process.env.GITHUB_CLIENT_SECRET,
+      callbackURL: process.env.GITHUB_CALLBACK_URL,
+    },
+    async function (accessToken, refreshToken, profile, done) {
+      return done(null, profile);
+    },
+  ),
 );
 
 passport.serializeUser((user, done) => {
@@ -55,22 +53,7 @@ passport.deserializeUser((user, done) => {
 
 // Routes:
 
-app.use("/stores", storesRouter);
-app.use("/vehicles", vehiclesRouter);
-app.use("/api-docs", swaggerRouter);
-
-app.get("/", (req, res) => {
-  res.send(req.sesssion.user !== undefined ? `Connected as: ${req.sesssion.user.displayName}` : "Not connected");
-});
-
-app.get(
-  "github/callback",
-  passport.authenticate("github", passport.authenticate("github", { failureRedirect: "/api-docs", session: false })),
-  (req, res) => {
-    req.session.user = req.user;
-    res.redirect("/");
-  },
-);
+app.use("/", router);
 
 // Miscellaneous:
 
